@@ -2,7 +2,7 @@
 $host = 'localhost';       
 $username = 'root';        
 $password = '';             
-$dbname = 'amazon'; // databsens namn
+$dbname = 'amazon'; // databasens namn
 
 $connection = mysqli_connect($host, $username, $password, $dbname); // skapar anslutningen till databasen
 
