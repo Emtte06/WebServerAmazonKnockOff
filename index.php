@@ -5,6 +5,7 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <?include 'header.php'?>
+    <?include 'footer.php'?>
 </body>
 </html>
