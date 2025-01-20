@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <?php if ($error) { echo "<p style='color:red;'>$error</p>"; } ?>
 
-    <p><a href="signup.php">Go back to signup page</a></p>
+    <p><a href="signupForm.php">Go back to signup page</a></p>
 
 </body>
 </html>
