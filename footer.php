@@ -23,7 +23,7 @@
     <footer class="dark-green-footer text-white text-center py-4">
         <div class="container">
             <!-- Watermark -->
-            <p class="m-0 text-white fst-italic">© 2025 新创 HardwareYourSiteName. All rights reserved.</p>
+            <p class="m-0 text-white fst-italic">© 2025 新创 Hardware. All rights reserved.</p>
             <small class="text-white">Powered by CCP (Xi jingping)</small>
         </div>
     </footer>
