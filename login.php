@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <?php if ($error) { echo "<p style='color:red;'>$error</p>"; } ?>
 
-    <p><a href="login.php">Go back to login page</a></p> <!-- byt login.php till den som faktiskt ska användas -->
+    <p><a href="loginForm.php">Go back to login page</a></p> <!-- byt login.php till den som faktiskt ska användas -->
 
 </body>
 </html>
