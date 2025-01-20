@@ -13,11 +13,6 @@
     </style>
 </head>
 <body>
-    <!-- Content -->
-    <div class="container my-5">
-        <h1 class="text-center">Main Content</h1>
-        <p class="text-center">This is a sample page with a footer at the bottom.</p>
-    </div>
 
     <!-- Footer -->
     <footer class="dark-green-footer text-white text-center py-4">
