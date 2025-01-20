@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $query = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$hashed_password')";
             if (mysqli_query($connection, $query)) {
                 // Redirect to the login page
-                header('Location: login.php');
+                header('Location: loginForm.php');
                 exit();
             } else {
                 $error = 'Error: ' . mysqli_error($connection);
