@@ -21,26 +21,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
         // Check if email or username already exists in the database
-        $query = 'SELECT id FROM users WHERE email = :email OR username = :username';
-        $stmt = $pdo->prepare($query);
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':username', $username);
-        $stmt->execute();
+        $query = "SELECT id FROM users WHERE email = '$email' OR username = '$username'";
+        $result = mysqli_query($connection, $query);
 
-        if ($stmt->rowCount() > 0) {
+        if (mysqli_num_rows($result) > 0) {
             $error = 'Username or email already exists.';
         } else {
             // Insert new user into the database
-            $query = 'INSERT INTO users (username, email, password) VALUES (:username, :email, :password)';
-            $stmt = $pdo->prepare($query);
-            $stmt->bindParam(':username', $username);
-            $stmt->bindParam(':email', $email);
-            $stmt->bindParam(':password', $hashed_password);
-            $stmt->execute();
-
-            // Redirect to the login page
-            header('Location: loginForm.php');
-            exit();
+            $query = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$hashed_password')";
+            if (mysqli_query($connection, $query)) {
+                // Redirect to the login page
+                header('Location: login.php');
+                exit();
+            } else {
+                $error = 'Error: ' . mysqli_error($connection);
+            }
         }
     }
 }
