@@ -8,7 +8,7 @@
 <body>
     <div>
         <?php include 'header.php';?>
-        
+
     <style>
         .product-image {
             max-width: 100%;
@@ -31,18 +31,18 @@
             </div>
             <!-- Product Details -->
             <div class="col-md-6 product-info">
-                <h1>Electrolux E201S Vacuum Bags</h1>
-                <p class="text-muted">S-Bag Classic Long Performance, 4 Bags</p>
+                <h1></h1>
+                <p class="text-muted"></p>
                 <div class="rating">
                     <span class="text-warning">★★★★☆</span>
-                    <span class="text-muted">2,834 ratings</span>
+                    <span class="text-muted"></span>
                 </div>
                 <hr>
-                <h3>kr 88.00</h3>
-                <p><strong>Style:</strong> S-bag Classic Long Performance</p>
-                <p><strong>Color:</strong> White, Blue</p>
-                <p><strong>Material:</strong> Synthetic Polymer (PMMA)</p>
-                <p><strong>Special Feature:</strong> 50% Longer Lasting Suction</p>
+                <h3></h3>
+                <p><strong>Style:</strong> </p>
+                <p><strong>Color:</strong> </p>
+                <p><strong>Material:</strong> </p>
+                <p><strong>Special Feature:</strong> </p>
                 <div class="product-options">
                     <label for="quantity">Quantity:</label>
                     <input type="number" id="quantity" name="quantity" min="1" max="10" value="1">
@@ -50,8 +50,8 @@
                     <button class="btn btn-success">Buy Now</button>
                 </div>
                 <hr>
-                <p><strong>Delivery:</strong> FREE delivery 31 January - 3 February</p>
-                <p><strong>Sold by:</strong> Dustfree24</p>
+                <p><strong>Delivery:</strong> FREE delivery</p>
+                <p><strong>Sold by:</strong> </p>
                 <p><strong>Returns:</strong> Returnable within 30 days of receipt</p>
             </div>
         </div>
@@ -60,11 +60,11 @@
             <div class="col-12">
                 <h2>About this item</h2>
                 <ul>
-                    <li><strong>LASTS LONGER:</strong> Holds 50% longer than traditional paper vacuum bags.</li>
-                    <li><strong>60% BETTER SUCTION CAPACITY:</strong> Optimizes airflow for constant suction.</li>
-                    <li><strong>HIGH FILTER CAPACITY:</strong> Filters out up to 99% of particles down to 1 µm.</li>
-                    <li><strong>SPECIAL FOLDING:</strong> Provides more capacity and easier insertion.</li>
-                    <li><strong>DURABLE AND HYGIENIC CLOSURE SYSTEM:</strong> Redesigned for stability and hygiene.</li>
+                    <li><strong></strong></li>
+                    <li><strong>:</strong></li>
+                    <li><strong></strong></li>
+                    <li><strong></strong></li>
+                    <li><strong></strong></li>
                 </ul>
             </div>
         </div>
