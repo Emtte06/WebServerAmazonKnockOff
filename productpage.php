@@ -61,7 +61,7 @@
                 <h2>About this item</h2>
                 <ul>
                     <li><strong></strong></li>
-                    <li><strong>:</strong></li>
+                    <li><strong></strong></li>
                     <li><strong></strong></li>
                     <li><strong></strong></li>
                     <li><strong></strong></li>
