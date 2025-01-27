@@ -8,27 +8,33 @@ $error = '';
 // Check if the form is submitted via POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Retrieve form inputs
-    $email = $_POST['email'];
+    $email = mysqli_real_escape_string($connection, $_POST['email']);
     $password = $_POST['password'];
 
-    // Prepare the SQL query to find the user by email
-    $query = 'SELECT id, username, password FROM users WHERE email = :email';
-    $stmt = $pdo->prepare($query);
-    $stmt->bindParam(':email', $email);
-    $stmt->execute();
+    // Query to find the user by email
+    $query = "SELECT id, username, password FROM users WHERE email = '$email'";
+    $result = mysqli_query($connection, $query);
 
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    // Check if the user exists
+    if (mysqli_num_rows($result) > 0) {
+        // Fetch the user data
+        $user = mysqli_fetch_assoc($result);
 
-    if ($user && password_verify($password, $user['password'])) {
-        // Password is correct, start the session and store user details
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['username'] = $user['username'];
+        // Verify the password
+        if (password_verify($password, $user['password'])) {
+            // Password is correct, start the session
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['username'] = $user['username'];
 
-        // Redirect to the dashboard or home page
-        header('Location: dashboard.php');
-        exit();
+            // Redirect to the dashboard or home page
+            header('Location: index.php'); // CAN BE CHANGED LATER
+            exit();
+        } else {
+            // Incorrect password
+            $error = 'Invalid email or password';
+        }
     } else {
-        // Invalid credentials
+        // User not found
         $error = 'Invalid email or password';
     }
 }
