@@ -2,7 +2,9 @@
 include 'db.php'; // Include your database connection file
 
 // Query to select items from the database
-$query = "SELECT item_name, price, picture_path FROM items"; // Include picture_path in the query
+$query = "SELECT items.item_name, items.price, items.picture_path, categories.category_name 
+          FROM items 
+          JOIN categories ON items.category_id = categories.id"; // Include category in the query
 $result = mysqli_query($connection, $query);
 
 // Check if the query was successful
@@ -22,7 +24,18 @@ if (!$result) {
         height: 200px;
         object-fit: cover;
     }
+    .category-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 14px;
+    }
 </style>
+
 <div class="container mt-5">
     <h1 class="text-center mb-4">Items in Stock</h1>
     <div class="row">
@@ -31,6 +44,10 @@ if (!$result) {
                 <div class="card h-100 shadow">
                     <!-- Item Image -->
                     <img src="<?php echo htmlspecialchars($row['picture_path']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($row['item_name']); ?>">
+                    <!-- Category Badge -->
+                    <div class="category-badge">
+                        <?php echo htmlspecialchars($row['category_name']); ?>
+                    </div>
                     <div class="card-body">
                         <!-- Item Name -->
                         <h5 class="card-title"><?php echo htmlspecialchars($row['item_name']); ?></h5>
