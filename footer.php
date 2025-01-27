@@ -13,7 +13,6 @@
     </style>
 </head>
 <body>
-
     <!-- Footer -->
     <footer class="dark-green-footer text-white text-center py-4">
         <div class="container">
