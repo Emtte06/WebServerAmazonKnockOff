@@ -2,7 +2,7 @@
 include 'db.php'; // Include your database connection file
 
 // Query to select items from the database
-$query = "SELECT items.item_name, items.price, items.picture_path, categories.category_name 
+$query = "SELECT items.id, items.item_name, items.price, items.picture_path, categories.category_name 
           FROM items 
           JOIN categories ON items.category_id = categories.id"; // Include category in the query
 $result = mysqli_query($connection, $query);
@@ -53,6 +53,7 @@ if (!$result) {
                         <h5 class="card-title"><?php echo htmlspecialchars($row['item_name']); ?></h5>
                         <!-- Item Price -->
                         <p class="card-text">$<?php echo htmlspecialchars($row['price']); ?></p>
+                        <a href="productpage.php?id=<?php echo $row['id']; ?>"> <button class="btn btn-primary">More Details</a>
                     </div>
                 </div>
             </div>
