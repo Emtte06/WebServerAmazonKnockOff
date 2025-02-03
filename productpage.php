@@ -79,24 +79,6 @@
             </div>
         </div>
 
-        <!-- Rating Distribution Graph -->
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-body">
-                    <h3 class="card-title">Rating Distribution</h3>
-                    <div class="graph">
-                        <?php
-                        foreach ($rating_counts as $stars => $count) {
-                            $height = ($count / max($rating_counts)) * 100; // Scale height based on max count
-                            echo "<div class='bar' style='height: {$height}%;' title='{$stars} stars: {$count} reviews'></div>";
-                        }
-                        ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Individual Reviews -->
     <div class="mt-4">
         <h3>Customer Reviews</h3>
