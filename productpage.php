@@ -65,7 +65,81 @@
             </div>
         </div>
     </div>
+    <!-- Reviews Section -->
+<div class="container mt-5">
+    <h2>Customer Reviews</h2>
+    <div class="row">
+        <!-- Average Rating -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Average Rating</h3>
+                    <p class="display-4"><?php echo number_format($average_rating, 1); ?> <small class="text-muted">/ 5</small></p>
+                </div>
+            </div>
+        </div>
 
+        <!-- Rating Distribution Graph -->
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Rating Distribution</h3>
+                    <div class="graph">
+                        <?php
+                        foreach ($rating_counts as $stars => $count) {
+                            $height = ($count / max($rating_counts)) * 100; // Scale height based on max count
+                            echo "<div class='bar' style='height: {$height}%;' title='{$stars} stars: {$count} reviews'></div>";
+                        }
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Individual Reviews -->
+    <div class="mt-4">
+        <h3>Customer Reviews</h3>
+        <?php if (empty($reviews)): ?>
+            <p>No reviews yet. Be the first to review this product!</p>
+        <?php else: ?>
+            <?php foreach ($reviews as $review): ?>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo htmlspecialchars($review['user_name']); ?></h5>
+                        <div class="rating mb-2">
+                            <?php echo str_repeat('★', $review['rating']) . str_repeat('☆', 5 - $review['rating']); ?>
+                        </div>
+                        <p class="card-text"><?php echo htmlspecialchars($review['review_text']); ?></p>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </div>
+</div>
+
+<!-- Add this CSS for the reviews section -->
+<style>
+    .graph {
+        display: flex;
+        align-items: flex-end;
+        height: 150px;
+        gap: 5px;
+        margin-top: 20px;
+    }
+    .bar {
+        flex: 1;
+        background-color: #007bff;
+        border-radius: 3px;
+    }
+    .rating {
+        color: gold;
+        font-size: 20px;
+    }
+    .card {
+        margin-bottom: 10px;
+    }
+</style>
         <?php include 'footer.php';?>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     </div>
