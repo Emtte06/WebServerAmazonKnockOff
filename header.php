@@ -1,29 +1,30 @@
 <div class="header">
+<div class="nav">
+  <div class="container-fluid d-flex justify-content-between align-items-center" >
+      <!-- "More" Button -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon">more</span>
+      </button>
 
-<div class="container-fluid d-flex justify-content-between align-items-center">
-    <!-- "More" Button -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon">more</span>
-    </button>
-
-    <!-- Search Form -->
-    <form class="form-inline my-2 my-lg-0 d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-    </form>
-</div>
-    <div class="collapse" id="navbarToggleExternalContent" data-bs-theme="dark">
-  <div class="bg-dark p-4" style="background-color:>
-  <div class="d-grid gap-3" style="grid-template-columns: 1fr 2fr;">
-      <div class="bg-body-tertiary border rounded-3">
-        <br><br><br><br><br><br><br><br><br><br>
+      <!-- Search Form -->
+      <form class="form-inline my-2 my-lg-0 d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+  </div>
+      <div class="collapse" id="navbarToggleExternalContent" data-bs-theme="dark" style="width: 90%; right: %;">
+    <div class="bg-dark p-4" style="background-color:>
+    <div class="d-grid gap-3" style="grid-template-columns: 1fr 2fr;">
+        <div class="bg-body-tertiary border rounded-3">
+          <br><br><br><br><br><br><br><br><br><br>
+        </div>
+        <div class="bg-body-tertiary border rounded-3">
+          <br><br><br><br><br><br><br><br><br><br>
+        </div>
       </div>
-      <div class="bg-body-tertiary border rounded-3">
-        <br><br><br><br><br><br><br><br><br><br>
-      </div>
+      <h5 class="text-body-emphasis h4">Collapsed content</h5>
+      <span class="text-body-secondary">Toggleable via the navbar brand.</span>
     </div>
-    <h5 class="text-body-emphasis h4">Collapsed content</h5>
-    <span class="text-body-secondary">Toggleable via the navbar brand.</span>
   </div>
 </div>
 
@@ -34,18 +35,24 @@
         <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
             <defs>
                 <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+
             </defs>
             <g class="parallax">
-                <use class="shadow" xlink:href="#gentle-wave" x="48" y="0" fill="rgba(7, 200, 31,0.7)" />
-                <use class="shadow" xlink:href="#gentle-wave" x="48" y="3" fill="rgba(7, 200, 128,0.5)" />
-                <use class="shadow" xlink:href="#gentle-wave" x="48" y="5" fill="rgba(79, 200, 7,0.3)" />
-                <use class="shadow" xlink:href="#gentle-wave" x="48" y="7" fill="#07ad1c" />
+
+            <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(7, 200, 31,0.7)" />
+            <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(7, 200, 128,0.5)" />
+            <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(79, 200, 7,0.3)" />
+            <use xlink:href="#gentle-wave" x="48" y="7" fill="#07ad1c" />
             </g>
         </svg>
 </div>
 
 <style>
 
+  .nav {
+    width: 100%;
+    background-color: #07ad1c;
+  }
     
     .waves {
     transform: scaleY(-1);
