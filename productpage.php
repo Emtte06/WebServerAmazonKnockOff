@@ -33,10 +33,6 @@
             <div class="col-md-6 product-info">
                 <h1></h1>
                 <p class="text-muted"></p>
-                <div class="rating">
-                    <span class="text-warning">★★★★☆</span>
-                    <span class="text-muted"></span>
-                </div>
                 <hr>
                 <h3></h3>
                 <p><strong>Style:</strong> </p>
