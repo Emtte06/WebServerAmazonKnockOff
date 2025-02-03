@@ -67,7 +67,6 @@
     </div>
     <!-- Reviews Section -->
 <div class="container mt-5">
-    <h2>Customer Reviews</h2>
     <div class="row">
         <!-- Average Rating -->
         <div class="col-md-4">
