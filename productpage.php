@@ -105,7 +105,7 @@
     .graph {
         display: flex;
         align-items: flex-end;
-        height: 150px;
+        height: 100px;
         gap: 5px;
         margin-top: 20px;
     }
