@@ -3,16 +3,18 @@
 <div class="header">
   <div class="Head">
     <div class="container-fluid d-flex justify-content-between align-items-center">
-      
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon">more</span>
+
+      <a href="index.php" class="btn btn-success me-2">Home</a>
+
+      <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-label="Toggle navigation">
+        More
       </button>
 
 
       <form class="form-inline my-2 my-lg-0 d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <input class="form-control me-3" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-success" type="submit">Search</button>
       </form>
 
     </div>
