@@ -1,5 +1,5 @@
 <?php
-session_start();
+include 'auth.php';
 ?>
 
 <html lang="en">
@@ -12,14 +12,9 @@ session_start();
 <body class="bg-light d-flex flex-column min-vh-100">
     <main class="flex-grow-1">
         <a href="loginForm.php"><button>Login</button></a>
+        <a href="adminPage.php"><button>Login</button></a>
 
         <?php include 'header.php';?>
-
-        <!-- Content -->
-        <div class="container my-5">
-            <h1 class="text-center">Main Content</h1>
-            <p class="text-center">This is a sample page with a footer at the bottom.</p>
-        </div>
 
         <?php include 'homepageItems.php';?>
     </main>
