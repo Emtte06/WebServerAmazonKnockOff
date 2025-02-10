@@ -53,7 +53,9 @@ if (!$result) {
                         <h5 class="card-title"><?php echo htmlspecialchars($row['item_name']); ?></h5>
                         <!-- Item Price -->
                         <p class="card-text">$<?php echo htmlspecialchars($row['price']); ?></p>
-                        <a href="productpage.php?id=<?php echo $row['id']; ?>"> <button class="btn btn-primary">More Details</a>
+                        <a href="productpage.php?id=<?php echo $row['id']; ?>">
+                            <button class="btn btn-success" style="background-color: #07ad1c; color: white;">More Details</button>
+                        </a>
                     </div>
                 </div>
             </div>

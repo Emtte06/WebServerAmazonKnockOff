@@ -87,8 +87,8 @@ if ($rating_result) {
                         <label for="quantity">Quantity:</label>
                         <input type="number" id="quantity" name="quantity" 
                                min="1" max="10" value="1">
-                        <button type="submit" class="btn btn-primary">Add to Basket</button>
-                        <button type="submit" class="btn btn-success" name="buy_now">Buy Now</button>
+                        <button type="submit" class="btn btn-success" style="background-color: #07ad1c">Add to Basket</button>
+                        <button type="submit" class="btn btn-primary" style="background-color: #1C07AD" name="buy_now">Buy Now</button>
                     </form>
                 </div>
                 

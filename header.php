@@ -10,6 +10,9 @@
       <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-label="Toggle navigation">
         More
       </button>
+      
+      <a href="loginForm.php" class="btn btn-success me-2">Login</a>
+      <a href="adminlanding.php" class="btn btn-success me-2">Admin</a>
 
 
       <form class="form-inline my-2 my-lg-0 d-flex">
@@ -27,8 +30,6 @@
       <div class="d-grid gap-2" style="max-width: 90%; margin: auto;">
         <div class="bg-body-tertiary border rounded-3" style="height: 200px;"></div>
       </div>
-      <h5 class="text-body-emphasis h5 text-center mt-2">Collapsed content</h5>
-      <span class="text-body-secondary text-center d-block" style="font-size: 14px;">Toggleable via the navbar brand.</span>
     </div>
   </div>
 </div>

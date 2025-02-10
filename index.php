@@ -11,8 +11,6 @@ include 'auth.php';
 </head>
 <body class="bg-light d-flex flex-column min-vh-100">
     <main class="flex-grow-1">
-        <a href="loginForm.php"><button>Login</button></a>
-        <a href="adminlanding.php"><button>Admin</button></a>
 
         <?php include 'header.php';?>
 
