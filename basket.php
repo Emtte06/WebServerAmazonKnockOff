@@ -51,34 +51,7 @@ $total_cost = calculateTotal($_SESSION['basket']);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Basket</title>
     <link rel="stylesheet" href="header.css">
-    <style>
-        .basket-window {
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 300px;
-            height: 100%;
-            background-color: white;
-            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-            overflow-y: auto;
-            padding: 20px;
-            z-index: 1000;
-        }
-        .basket-item {
-            margin-bottom: 10px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #ddd;
-        }
-        .checkout-button {
-            margin-top: 20px;
-            width: 100%;
-            padding: 10px;
-            background-color: #07ad1c;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-    </style>
+    
 </head>
 <body>
     <div class="basket-window">
