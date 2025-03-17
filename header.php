@@ -83,3 +83,26 @@ $result = $conn->query($sql);
     </svg>
 </div>
 
+<!-- Varukorgsfönster -->
+<div id="basket-window" class="basket-window">
+    <h3>Your Basket</h3>
+    <div id="basket-items">
+      <!-- Här visas produkterna dynamiskt -->
+      <p>Your basket is empty.</p>
+    </div>
+    <p><strong>Total: <span id="basket-total">$0.00</span></strong></p>
+    <button class="checkout-button" onclick="window.location.href='checkout.php'">Checkout</button>
+  </div>
+
+  <!-- JavaScript för att visa/dölja varukorgen -->
+  <script>
+    function toggleBasket() {
+      var basketWindow = document.getElementById('basket-window');
+      if (basketWindow.style.display === 'none' || basketWindow.style.display === '') {
+        basketWindow.style.display = 'block';
+      } else {
+        basketWindow.style.display = 'none';
+      }
+    }
+  </script>
+
