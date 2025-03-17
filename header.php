@@ -24,8 +24,8 @@ $result = $conn->query($sql);
 
       <!-- Left-aligned: Home & More button -->
       <div class="d-flex align-items-center" style="flex-grow: 1;">
-        <a href="index.php" class="btn btn-success btn-lg me-2">Home</a>
-        <button class="btn btn-success btn-lg flex-grow-1 me-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-label="Toggle navigation">
+        <a href="index.php" class="btn btn-success btn-lg mx-2">Home</a>
+        <button class="btn btn-success btn-lg flex-grow-1 mx-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-label="Toggle navigation">
           More
         </button>
         <a href="loginForm.php" class="btn btn-success btn-lg mx-2">Login</a>
@@ -34,12 +34,12 @@ $result = $conn->query($sql);
       <!-- Right-aligned: Search bar + Admin -->
       <div class="d-flex align-items-center">
         <form class="form-inline my-2 my-lg-0 d-flex me-2">
-          <input class="form-control form-control-lg me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-success btn-lg" type="submit">Search</button>
+          <input class="form-control form-control-lg mx-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-success btn-lg mx-2" type="submit">Search</button>
         </form>
-        <a href="adminlanding.php" class="btn btn-success btn-lg ms-2">Admin</a>
+        <a href="adminlanding.php" class="btn btn-success btn-lg mx-2">Admin</a>
         <!-- Basket-knapp -->
-        <button class="btn btn-success" onclick="toggleBasket()">Basket</button>
+        <button class="btn btn-success btn-lg mx-2" onclick="toggleBasket()">Basket</button>
       </div>
 
     </div>
