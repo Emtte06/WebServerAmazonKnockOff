@@ -38,6 +38,8 @@ $result = $conn->query($sql);
           <button class="btn btn-success btn-lg" type="submit">Search</button>
         </form>
         <a href="adminlanding.php" class="btn btn-success btn-lg ms-2">Admin</a>
+        <!-- Basket-knapp -->
+        <button class="btn btn-success" onclick="toggleBasket()">Basket</button>
       </div>
 
     </div>
