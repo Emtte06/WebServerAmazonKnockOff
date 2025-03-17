@@ -91,7 +91,7 @@ $result = $conn->query($sql);
       <p>Your basket is empty.</p>
     </div>
     <p><strong>Total: <span id="basket-total">$0.00</span></strong></p>
-    <button class="checkout-button" onclick="window.location.href='checkout.php'">Checkout</button>
+    <button class="checkout-button" onclick="window.location.href='checkoutpage.php'">Checkout</button>
   </div>
 
   <!-- JavaScript för att visa/dölja varukorgen -->
