@@ -67,7 +67,7 @@ $total_cost = calculateTotal($_SESSION['basket']);
                 </div>
             <?php endforeach; ?>
             <p><strong>Total: $<?php echo number_format($total_cost, 2); ?></strong></p>
-            <button class="checkout-button" onclick="window.location.href='checkoutpage.php'">Checkout</button>
+            <a href="checkoutpage.php" class="checkout-button">Checkout</a>
         <?php endif; ?>
     </div>
 </body>
