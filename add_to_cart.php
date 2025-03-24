@@ -60,3 +60,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 ?>
+
+<?php // comment to fix this shit ?>

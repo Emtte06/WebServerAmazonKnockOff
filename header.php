@@ -110,3 +110,4 @@ $result = $conn->query($sql);
     }
   </script>
 
+<?php // comment to fix this shit ?>

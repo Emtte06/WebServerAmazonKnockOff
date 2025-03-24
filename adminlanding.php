@@ -28,3 +28,5 @@ requireAdmin();
 // Include the footer
 include('footer.php');
 ?>
+
+<?php // comment to fix this shit ?>

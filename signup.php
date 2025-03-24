@@ -58,3 +58,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 </body>
 </html>
+
+<?php // comment to fix this shit ?>

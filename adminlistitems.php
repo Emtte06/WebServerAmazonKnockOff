@@ -74,3 +74,5 @@ $result = mysqli_query($connection, $query);
 // Include the footer
 include('footer.php');
 ?>
+
+<?php // comment to fix this shit ?>

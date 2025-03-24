@@ -66,3 +66,5 @@ $total_cost = calculateTotal($_SESSION['basket']);
     </div>
 </body>
 </html>
+
+<?php // comment to fix this shit ?>

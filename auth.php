@@ -28,3 +28,5 @@ function requireAdmin() {
     }
 }
 ?>
+
+<?php // comment to fix this shit ?>

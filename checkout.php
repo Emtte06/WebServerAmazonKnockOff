@@ -22,3 +22,5 @@ $total_cost = calculateTotal($_SESSION['basket']);
     <!-- Add your checkout form here -->
 </body>
 </html>
+
+<?php // comment to fix this shit ?>

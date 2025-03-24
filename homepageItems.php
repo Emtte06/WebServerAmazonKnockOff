@@ -67,3 +67,5 @@ if (!$result) {
 // Close the connection
 mysqli_close($connection);
 ?>
+
+<?php // comment to fix this shit ?>

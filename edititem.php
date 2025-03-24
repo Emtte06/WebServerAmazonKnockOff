@@ -113,3 +113,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 // Include the footer
 include('footer.php');
 ?>
+
+<?php // comment to fix this shit ?>
