@@ -1,6 +1,6 @@
 const predefinedResponses = {
     'Order status': 'You can track your order using the link provided in your confirmation email.📦',
-    'Returns': 'Send us an email 新创@hardware.cn at and we will send the return form to you within 72 business hours. Make sure to include your order number!📦',
+    'Returns': 'Send us an email at 新创@hardware.cn and we will send the return form to you within 72 business hours. Make sure to include your order number!📦',
     'Technical support': 'Our technical team will contact you within 24 hours.⌚',
     'default': 'Thank you for your feedback!😊'
 };
