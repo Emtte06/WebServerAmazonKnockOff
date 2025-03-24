@@ -35,7 +35,6 @@ ALTER TABLE items
 ADD COLUMN category_id INT,
 ADD FOREIGN KEY (category_id) REFERENCES categories(id);
 
-
 INSERT INTO `items` (
     `id`, 
     `item_name`, 
@@ -54,4 +53,6 @@ INSERT INTO `items` (
         '49.99', 
         'Ståltrimmern, en kraftfull ogräsborste som kommer att göra din trädgårdsarbete mycket enklare och mer effektivt.',
         '1'
-    ) 
+    )
+
+ALTER TABLE `users` ADD `isAdmin` BOOLEAN NULL AFTER `password`; 
