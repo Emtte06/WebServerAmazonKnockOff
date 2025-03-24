@@ -82,43 +82,44 @@ if ($rating_result) {
                 <p><strong>In Stock:</strong> <?= $product['in_stock'] ?> units</p>
                 
                 <div class="product-options">
-                    <form action="add_to_cart.php" method="post">
-                        <input type="hidden" name="item_id" value="<?= $product_id ?>">
-                        <label for="quantity">Quantity:</label>
-                        <input type="number" id="quantity" name="quantity" 
-                               min="1" max="10" value="1">
-                        <button type="submit" class="btn btn-success" style="background-color: #07ad1c">Add to Basket</button>
-                        <button type="submit" class="btn btn-primary" style="background-color: #1C07AD" name="buy_now">Buy Now</button>
-                        <button type="button" class="btn btn-warning btn-lg" style="background-color:rgb(255, 123, 0); border-radius: 8px;" data-bs-toggle="modal" data-bs-target="#reviewModal">
+                <form action="add_to_cart.php" method="post">
+                    <input type="hidden" name="item_id" value="<?= $product_id ?>">
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" id="quantity" name="quantity" min="1" max="10" value="1">
+                    <button type="submit" class="btn btn-success" name="add_to_cart">Add to Basket</button>
+                    <button type="submit" class="btn btn-primary" name="buy_now">Buy Now</button>
+                </form>
+
+
+                        <button type="button" class="btn btn-warning" style="background-color:rgb(255, 123, 0); border-radius: 8px;" data-bs-toggle="modal" data-bs-target="#reviewModal">
                         Write a Review
                         </button>
 
 <!-- Modal (fönstret som öppnas) -->
-<div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="reviewModalLabel">Write a Review</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="submit_review.php" method="post">
-                    <div class="mb-3">
-                        <label for="rating" class="form-label">Rating (1-5):</label>
-                        <input type="number" class="form-control" name="rating" min="1" max="5" required>
+        <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="reviewModalLabel">Write a Review</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="mb-3">
-                        <label for="review_text" class="form-label">Your Review:</label>
-                        <textarea class="form-control" name="review_text" rows="3" required></textarea>
+                    <div class="modal-body">
+                        <form action="submit_review.php" method="post">
+                            <div class="mb-3">
+                                <label for="rating" class="form-label">Rating (1-5):</label>
+                                <input type="number" class="form-control" name="rating" min="1" max="5" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="review_text" class="form-label">Your Review:</label>
+                                <textarea class="form-control" name="review_text" rows="3" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-success">Submit Review</button>
+                        </form>
                     </div>
-                    <button type="submit" class="btn btn-success">Submit Review</button>
-                </form>
+                </div>
             </div>
         </div>
-    </div>
-</div>
 
-                    </form>
                 </div>
                 
                 <hr>
@@ -171,5 +172,3 @@ if ($rating_result) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
-<?php // comment to fix this shit ?>

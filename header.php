@@ -88,15 +88,35 @@ $result = $conn->query($sql);
 </div>
 
 <!-- Varukorgsfönster -->
-<div id="basket-window" class="basket-window">
+<div id="basket-window" class="basket-window" style="display: none;">
     <h3>Your Basket</h3>
     <div id="basket-items">
-      <!-- Här visas produkterna dynamiskt -->
-      <p>Your basket is empty.</p>
+        <?php if (isset($_SESSION['basket']) && count($_SESSION['basket']) > 0): ?>
+            <?php foreach ($_SESSION['basket'] as $item): ?>
+                <div class="basket-item">
+                    <p><?php echo htmlspecialchars($item['name']); ?> (x<?php echo intval($item['quantity']); ?>)</p>
+                    <p>Price: $<?php echo number_format($item['price'] * $item['quantity'], 2); ?></p>
+                    <a href="basket.php?remove_from_basket=<?php echo intval($item['id']); ?>">Remove</a>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p>Your basket is empty.</p>
+        <?php endif; ?>
     </div>
-    <p><strong>Total: <span id="basket-total">$0.00</span></strong></p>
+    <p><strong>Total: <span id="basket-total">
+      <?php 
+        $total = 0;
+        if (isset($_SESSION['basket'])) {
+            foreach ($_SESSION['basket'] as $item) {
+                $total += $item['price'] * $item['quantity'];
+            }
+        }
+        echo '$' . number_format($total, 2);
+      ?>
+    </span></strong></p>
     <button class="checkout-button" onclick="window.location.href='checkoutpage.php'">Checkout</button>
-  </div>
+</div>
+
 
   <!-- JavaScript för att visa/dölja varukorgen -->
   <script>

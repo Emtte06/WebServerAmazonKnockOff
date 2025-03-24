@@ -15,7 +15,7 @@ function calculateTotal($basket) {
     return $total;
 }
 
-// Add a product to the basket (example)
+// Add a product to the basket
 if (isset($_POST['add_to_basket'])) {
     $product_id = $_POST['product_id'];
     $product_name = $_POST['product_name'];
@@ -30,7 +30,7 @@ if (isset($_POST['add_to_basket'])) {
     ];
 }
 
-// Remove a product from the basket (example)
+// Remove a product from the basket
 if (isset($_GET['remove_from_basket'])) {
     $product_id = $_GET['remove_from_basket'];
     foreach ($_SESSION['basket'] as $key => $item) {
@@ -39,6 +39,9 @@ if (isset($_GET['remove_from_basket'])) {
             break;
         }
     }
+    // Redirect back to the previous page
+    header("Location: " . $_SERVER['HTTP_REFERER']);
+    exit();
 }
 
 $total_cost = calculateTotal($_SESSION['basket']);
@@ -72,5 +75,3 @@ $total_cost = calculateTotal($_SESSION['basket']);
     </div>
 </body>
 </html>
-
-<?php // comment to fix this shit ?>

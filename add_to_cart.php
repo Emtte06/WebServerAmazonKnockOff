@@ -1,19 +1,16 @@
 <?php
 session_start();
+include "db.php";
 
-// Kontrollera om formuläret har skickats
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Hämta produkt-ID och antal från formuläret
     $item_id = isset($_POST['item_id']) ? intval($_POST['item_id']) : 0;
     $quantity = isset($_POST['quantity']) ? intval($_POST['quantity']) : 1;
 
-    // Validera produkt-ID och antal
     if ($item_id <= 0 || $quantity <= 0) {
         die("Invalid product ID or quantity.");
     }
 
-    // Hämta produktinformation från databasen
-    include 'db.php';
+    // Get product details from database
     $query = "SELECT * FROM items WHERE id = $item_id";
     $result = mysqli_query($connection, $query);
 
@@ -23,22 +20,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $product = mysqli_fetch_assoc($result);
 
-    // Lägg till produkten i varukorgen
+    // Initialize basket if not set
     if (!isset($_SESSION['basket'])) {
         $_SESSION['basket'] = [];
     }
 
-    // Kontrollera om produkten redan finns i varukorgen
+    // Check if product is already in basket and update quantity
     $found = false;
     foreach ($_SESSION['basket'] as &$item) {
         if ($item['id'] == $item_id) {
-            $item['quantity'] += $quantity; // Uppdatera antalet
+            $item['quantity'] += $quantity;
             $found = true;
             break;
         }
     }
 
-    // Om produkten inte finns i varukorgen, lägg till den
+    // If not found, add it to the basket
     if (!$found) {
         $_SESSION['basket'][] = [
             'id' => $item_id,
@@ -48,17 +45,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'picture_path' => $product['picture_path']
         ];
     }
-
-    // Omdirigera till checkout-sidan om "Buy Now" klickades
+    
+    // Redirect to checkout or product page
     if (isset($_POST['buy_now'])) {
         header('Location: checkoutpage.php');
         exit;
+    } else {
+        header('Location: productpage.php?id=' . $item_id);
+        exit;
     }
-
-    // Omdirigera tillbaka till produktsidan om "Add to Basket" klickades
-    header('Location: product.php?id=' . $item_id);
-    exit;
 }
-?>
-
-<?php // comment to fix this shit ?>
