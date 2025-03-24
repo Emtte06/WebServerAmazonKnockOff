@@ -124,63 +124,64 @@ if ($rating_result) {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                    </div>
 
-                </div>
-                
-                <hr>
-                <p><strong>Delivery:</strong> FREE delivery</p>
-                <p><strong>Returns:</strong> Returnable within 30 days of receipt</p>
             </div>
+            
+            <hr>
+            <p><strong>Delivery:</strong> FREE delivery</p>
+            <p><strong>Returns:</strong> Returnable within 30 days of receipt</p>
         </div>
+    </div>
 
-        <!-- Product Description -->
-        <div class="row mt-4">
-            <div class="col-12">
-                <h2>About this item</h2>
-                <p><?= nl2br(htmlspecialchars($product['description'])) ?></p>
-            </div>
-        </div>
-        
-<!-- Reviews Section -->
-<div class="row mt-5">
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-body">
-                <h3 class="card-title">Average Rating</h3>
-                <div class="average-rating">
-                    <span class="stars"><?= str_repeat('★', round($average_rating)) . str_repeat('☆', 5 - round($average_rating)) ?></span>
-                    <p class="display-4"><?= $average_rating ?> <small class="text-muted">/ 5</small></p>
-                    <small class="text-muted">(<?= $review_count ?> reviews)</small>
-                </div>
-            </div>
+    <!-- Product Description -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <h2>About this item</h2>
+            <p><?= nl2br(htmlspecialchars($product['description'])) ?></p>
         </div>
     </div>
     
-    <div class="col-md-8 mt-4">
-        <h3>Customer Reviews</h3>
-        <?php if (empty($reviews)): ?>
-            <p>No reviews yet. Be the first to review this product!</p>
-        <?php else: ?>
-            <div class="review-list">
-                <?php foreach ($reviews as $review): ?>
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title"><?= htmlspecialchars($review['username']) ?></h5>
-                            <div class="rating mb-2">
-                                <?= str_repeat('★', $review['rating']) . str_repeat('☆', 5 - $review['rating']) ?>
-                            </div>
-                            <p class="card-text"><?= nl2br(htmlspecialchars($review['review_text'])) ?></p>
-                            <small class="text-muted">
-                                Posted on <?= date('F j, Y', strtotime($review['created_at'])) ?>
-                            </small>
+        <!-- Reviews Section -->
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Average Rating</h3>
+                        <div class="average-rating">
+                            <span class="stars"><?= str_repeat('★', round($average_rating)) . str_repeat('☆', 5 - round($average_rating)) ?></span>
+                            <p class="display-4"><?= $average_rating ?> <small class="text-muted">/ 5</small></p>
+                            <small class="text-muted">(<?= $review_count ?> reviews)</small>
                         </div>
                     </div>
-                <?php endforeach; ?>
+                </div>
             </div>
-        <?php endif; ?>
+            
+            <div class="col-md-8 mt-4">
+                <h3>Customer Reviews</h3>
+                <?php if (empty($reviews)): ?>
+                    <p>No reviews yet. Be the first to review this product!</p>
+                <?php else: ?>
+                    <div class="review-list">
+                        <?php foreach ($reviews as $review): ?>
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?= htmlspecialchars($review['username']) ?></h5>
+                                    <div class="rating mb-2">
+                                        <?= str_repeat('★', $review['rating']) . str_repeat('☆', 5 - $review['rating']) ?>
+                                    </div>
+                                    <p class="card-text"><?= nl2br(htmlspecialchars($review['review_text'])) ?></p>
+                                    <small class="text-muted">
+                                        Posted on <?= date('F j, Y', strtotime($review['created_at'])) ?>
+                                    </small>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
     </div>
-</div>
 
 <?php include 'footer.php'; ?> 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
