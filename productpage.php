@@ -44,6 +44,16 @@ $rating_query = "SELECT
                  WHERE item_id = $product_id";
 $rating_result = mysqli_query($connection, $rating_query);
 
+// Check if current user has already reviewed this product
+$user_review = [];
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+    $check_review_query = "SELECT * FROM user_reviews 
+                          WHERE user_id = $user_id AND item_id = $product_id";
+    $check_review_result = mysqli_query($connection, $check_review_query);
+    $user_review = mysqli_fetch_assoc($check_review_result);
+}
+
 if ($rating_result) {
     $rating_data = mysqli_fetch_assoc($rating_result);
     $average_rating = number_format($rating_data['avg_rating'] ?? 0, 1);
@@ -77,6 +87,7 @@ if ($rating_result) {
                      class="product-image">
             </div>
             
+            
             <!-- Product Details -->
             <div class="col-md-6 product-info">
                 <h1><?= htmlspecialchars($product['item_name']) ?></h1>
@@ -97,37 +108,59 @@ if ($rating_result) {
                 </form>
 
 
-                        <button type="button" class="btn btn-warning" style="background-color:rgb(229, 255, 0); border-radius: 8px;" data-bs-toggle="modal" data-bs-target="#reviewModal">
-                        Write a Review
-                        </button>
+                                                <!-- Dynamic Review Button -->
+                            <button type="button" class="btn btn-warning" 
+                                    style="background-color:rgb(229, 255, 0); border-radius: 8px;" 
+                                    data-bs-toggle="modal" data-bs-target="#reviewModal">
+                                <?= empty($user_review) ? 'Write a Review' : 'View/Edit Review' ?>
+                            </button>
 
-                        <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="reviewModalLabel">Write a Review</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form action="submit_review.php" method="post">
-                                            <input type="hidden" name="item_id" value="<?php echo $product_id; ?>">
-                                            <div class="mb-3">
-                                                <label for="rating" class="form-label">Rating (1-5):</label>
-                                                <input type="number" class="form-control" name="rating" min="1" max="5" required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="review_text" class="form-label">Your Review:</label>
-                                                <textarea class="form-control" name="review_text" rows="3" required></textarea>
-                                            </div>
-                                            <button type="submit" class="btn btn-success">Submit Review</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-
+                        <!-- Review Modal -->
+<div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reviewModalLabel">
+                    <?= empty($user_review) ? 'Write a Review' : 'Edit Your Review' ?>
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            
+            <div class="modal-body">
+                <form action="submit_review.php" method="post">
+                    <input type="hidden" name="item_id" value="<?= $product_id ?>">
+                    
+                    <div class="mb-3">
+                        <label for="rating" class="form-label">Rating (1-5):</label>
+                        <input type="number" class="form-control" name="rating" 
+                               min="1" max="5" required
+                               value="<?= $user_review['rating'] ?? '' ?>">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="review_text" class="form-label">Your Review:</label>
+                        <textarea class="form-control" name="review_text" rows="3" required><?= 
+                            htmlspecialchars($user_review['review_text'] ?? '') 
+                        ?></textarea>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between">
+                        <button type="submit" class="btn btn-success">
+                            <?= empty($user_review) ? 'Submit Review' : 'Update Review' ?>
+                        </button>
+                        
+                        <?php if (!empty($user_review)): ?>
+                            <a href="delete_review.php?review_id=<?= $user_review['review_id'] ?>&item_id=<?= $product_id ?>" 
+                               class="btn btn-danger"
+                               onclick="return confirm('Are you sure you want to delete this review?')">
+                                Delete Review
+                            </a>
+                        <?php endif; ?>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
             <hr>
             <p><strong>Delivery:</strong> FREE delivery</p>
             <p><strong>Returns:</strong> Returnable within 30 days of receipt</p>
