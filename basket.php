@@ -50,7 +50,6 @@ $total_cost = calculateTotal($_SESSION['basket']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Basket</title>
-    <link rel="stylesheet" href="header.css">
     
 </head>
 <body>
