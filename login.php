@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];
 
     // Query to find the user by email
-    $query = "SELECT id, username, password FROM users WHERE email = '$email'";
+    $query = "SELECT id, username, password, isAdmin FROM users WHERE email = '$email'";
     $result = mysqli_query($connection, $query);
 
     // Check if the user exists
@@ -25,6 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Password is correct, start the session
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
+            $_SESSION['isAdmin'] = $user['isAdmin'];
+
 
             // Redirect to the dashboard or home page
             header('Location: index.php'); // CAN BE CHANGED LATER
@@ -49,7 +51,7 @@ include('header.php');
     <title>Login - Error</title>
 </head>
 <body>
-
+    
     <h2>Login Failed</h2>
 
     <?php if ($error) { echo "<p style='color:red;'>$error</p>"; } ?>

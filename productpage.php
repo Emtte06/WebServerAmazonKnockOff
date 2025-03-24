@@ -1,5 +1,6 @@
 <?php
 include 'db.php';
+include 'auth.php';
 
 // Get product ID from URL
 $product_id = isset($_GET['id']) ? intval($_GET['id']) : 0;

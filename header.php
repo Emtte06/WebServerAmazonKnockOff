@@ -22,7 +22,7 @@ $result = $conn->query($sql);
   <div class="Head">
     <div class="container-fluid d-flex justify-content-between align-items-center">
 
-      <!-- Left-aligned: Home & More button -->
+
       <div class="d-flex align-items-center" style="flex-grow: 1;">
         <a href="index.php" class="btn btn-success btn-lg mx-2">Home</a>
         <button class="btn btn-success btn-lg flex-grow-1 mx-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-label="Toggle navigation">
@@ -31,15 +31,17 @@ $result = $conn->query($sql);
         <a href="loginForm.php" class="btn btn-success btn-lg mx-2">Login</a>
       </div>
 
-      <!-- Right-aligned: Search bar + Admin -->
       <div class="d-flex align-items-center">
         <form class="form-inline my-2 my-lg-0 d-flex me-2">
           <input class="form-control form-control-lg mx-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-success btn-lg mx-2" type="submit">Search</button>
         </form>
-        <a href="adminlanding.php" class="btn btn-success btn-lg mx-2">Admin</a>
-        <!-- Basket-knapp -->
+        
         <button class="btn btn-success btn-lg mx-2" onclick="toggleBasket()">Basket</button>
+
+        <?php if (isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] == true): ?>
+          <a href="adminlanding.php" class="btn btn-success btn-lg mx-2">Admin</a>
+        <?php endif;?>
       </div>
 
     </div>
@@ -71,7 +73,7 @@ $result = $conn->query($sql);
   </div>
 </div>
 
-<div style="background-color: white; width: 100%; height: auto; position: relative;">
+<div style="width: 100%; height: auto; position: relative;">
     <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
         <defs>
             <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
