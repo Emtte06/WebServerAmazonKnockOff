@@ -32,10 +32,10 @@ $result = $conn->query($sql);
       </div>
 
       <div class="d-flex align-items-center">
-        <form class="form-inline my-2 my-lg-0 d-flex me-2">
-          <input class="form-control form-control-lg mx-2" type="search" placeholder="Search" aria-label="Search">
+      <form class="form-inline my-2 my-lg-0 d-flex me-2" method="get" action="index.php">
+          <input class="form-control form-control-lg mx-2" type="search" name="search" placeholder="Search for items" aria-label="Search">
           <button class="btn btn-success btn-lg mx-2" type="submit">Search</button>
-        </form>
+      </form>
         
         <button class="btn btn-success btn-lg mx-2" onclick="toggleBasket()">Basket</button>
 
@@ -58,13 +58,14 @@ $result = $conn->query($sql);
             style="height: 200px; display: flex; flex-wrap: wrap; gap: 10px; padding: 10px; align-items: flex-start; justify-content: flex-start; overflow-y: auto;">
 
           <?php
-          if ($result->num_rows > 0) {
+           if ($result->num_rows > 0) {
               while ($row = $result->fetch_assoc()) {
-                  echo '<a href="category.php?id=' . $row["id"] . '" class="btn btn-light">' . htmlspecialchars($row["category_name"]) . '</a>';
+                  echo '<a href="index.php?category_id=' . $row["id"] . '" class="btn btn-light">' . htmlspecialchars($row["category_name"]) . '</a>';
               }
-          } else {
+            } 
+            else {
               echo "<p>No categories found</p>";
-          }
+            }
           $conn->close();
           ?>
         </div>
