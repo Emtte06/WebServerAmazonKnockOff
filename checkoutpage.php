@@ -1,12 +1,5 @@
 <?php
 
-
-// Om varukorgen är tom, omdirigera till startsidan
-if (empty($_SESSION['basket'])) {
-    header('Location: index.php');
-    exit;
-}
-
 // Funktion för att beräkna totalpriset
 function calculateTotal($basket) {
     $total = 0;
