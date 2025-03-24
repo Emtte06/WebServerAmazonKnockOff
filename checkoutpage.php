@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 
 // Om varukorgen är tom, omdirigera till startsidan
 if (empty($_SESSION['basket'])) {
