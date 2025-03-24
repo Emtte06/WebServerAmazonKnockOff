@@ -28,7 +28,12 @@ $result = $conn->query($sql);
         <button class="btn btn-success btn-lg flex-grow-1 mx-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-label="Toggle navigation">
           More
         </button>
-        <a href="loginForm.php" class="btn btn-success btn-lg mx-2">Login</a>
+        <?php if (!isLoggedIn()): ?>
+          <a href="loginForm.php" class="btn btn-success btn-lg mx-2">Login</a>
+        <?php endif;?>
+        <?php if (isLoggedIn()): ?>
+          <a href="logout.php" class="btn btn-success btn-lg mx-2">Logout</a>
+        <?php endif;?>
       </div>
 
       <div class="d-flex align-items-center">
