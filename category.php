@@ -1,18 +1,14 @@
 <?php
 include 'db.php'; // Include your database connection file
 
-// Get the category_id from the URL if it's set
-$category_id = isset($_GET['category_id']) ? $_GET['category_id'] : '';
+// Get the category ID from the URL (example: category.php?id=1)
+$category_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
-// If a category_id is provided, modify the query to fetch only items from that category
+// Query to select items from the selected category
 $query = "SELECT items.id, items.item_name, items.price, items.picture_path, categories.category_name 
           FROM items 
-          JOIN categories ON items.category_id = categories.id";
-
-// If category_id is specified, add the filter condition
-if ($category_id != '') {
-    $query .= " WHERE items.category_id = " . (int)$category_id;
-}
+          JOIN categories ON items.category_id = categories.id 
+          WHERE categories.id = $category_id"; 
 
 $result = mysqli_query($connection, $query);
 
@@ -20,8 +16,15 @@ $result = mysqli_query($connection, $query);
 if (!$result) {
     die("Query failed: " . mysqli_error($connection));
 }
+
+// Fetch the category name to display on the page
+$category_query = "SELECT category_name FROM categories WHERE id = $category_id";
+$category_result = mysqli_query($connection, $category_query);
+$category_name = mysqli_fetch_assoc($category_result)['category_name'];
+
 ?>
 
+<!-- HTML and CSS for displaying items -->
 <style>
     .card {
         transition: transform 0.2s;
@@ -46,7 +49,7 @@ if (!$result) {
 </style>
 
 <div class="container mt-5">
-    <h1 class="text-center mb-4">Items in Stock</h1>
+    <h1 class="text-center mb-4">Items in Category: <?php echo htmlspecialchars($category_name); ?></h1>
     <div class="row">
         <?php while ($row = mysqli_fetch_assoc($result)): ?>
             <div class="col-md-4 mb-4">

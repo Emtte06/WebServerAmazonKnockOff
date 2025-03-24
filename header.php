@@ -58,13 +58,14 @@ $result = $conn->query($sql);
             style="height: 200px; display: flex; flex-wrap: wrap; gap: 10px; padding: 10px; align-items: flex-start; justify-content: flex-start; overflow-y: auto;">
 
           <?php
-          if ($result->num_rows > 0) {
+           if ($result->num_rows > 0) {
               while ($row = $result->fetch_assoc()) {
-                  echo '<a href="category.php?id=' . $row["id"] . '" class="btn btn-light">' . htmlspecialchars($row["category_name"]) . '</a>';
+                  echo '<a href="index.php?category_id=' . $row["id"] . '" class="btn btn-light">' . htmlspecialchars($row["category_name"]) . '</a>';
               }
-          } else {
+            } 
+            else {
               echo "<p>No categories found</p>";
-          }
+            }
           $conn->close();
           ?>
         </div>
