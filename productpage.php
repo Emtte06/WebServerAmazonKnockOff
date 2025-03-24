@@ -18,30 +18,36 @@ if (!$product_result || mysqli_num_rows($product_result) === 0) {
 
 $product = mysqli_fetch_assoc($product_result);
 
-// Fetch reviews and average rating
+// Fetch reviews and ratings data
 $reviews = [];
 $average_rating = 0;
+$review_count = 0; // Initialize review count
 
-$reviews_query = "SELECT u.username, ur.rating, ur.review_text 
-                  FROM user_reviews ur
-                  JOIN users u ON ur.user_id = u.id
-                  WHERE ur.item_id = $product_id
-                  ORDER BY ur.created_at DESC";
-                  
+// Fetch all reviews for this product
+$reviews_query = "SELECT u.username, ur.rating, ur.review_text, ur.created_at 
+                 FROM user_reviews ur
+                 JOIN users u ON ur.user_id = u.id
+                 WHERE ur.item_id = $product_id
+                 ORDER BY ur.created_at DESC";
 $reviews_result = mysqli_query($connection, $reviews_query);
 
 if ($reviews_result) {
-    while ($row = mysqli_fetch_assoc($reviews_result)) {
-        $reviews[] = $row;
-    }
+    $reviews = mysqli_fetch_all($reviews_result, MYSQLI_ASSOC);
+    $review_count = count($reviews); // Get count from the result set
 }
 
-// Calculate average rating
-$rating_query = "SELECT AVG(rating) as avg_rating FROM user_reviews WHERE item_id = $product_id";
+// Calculate average rating (optimized version)
+$rating_query = "SELECT 
+                 AVG(rating) as avg_rating,
+                 COUNT(*) as review_count 
+                 FROM user_reviews 
+                 WHERE item_id = $product_id";
 $rating_result = mysqli_query($connection, $rating_query);
+
 if ($rating_result) {
-    $rating_row = mysqli_fetch_assoc($rating_result);
-    $average_rating = number_format($rating_row['avg_rating'] ?? 0, 1);
+    $rating_data = mysqli_fetch_assoc($rating_result);
+    $average_rating = number_format($rating_data['avg_rating'] ?? 0, 1);
+    $review_count = $rating_data['review_count'] ?? 0; // More accurate count
 }
 ?>
 
@@ -95,30 +101,30 @@ if ($rating_result) {
                         Write a Review
                         </button>
 
-<!-- Modal (fönstret som öppnas) -->
-        <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="reviewModalLabel">Write a Review</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="submit_review.php" method="post">
-                            <div class="mb-3">
-                                <label for="rating" class="form-label">Rating (1-5):</label>
-                                <input type="number" class="form-control" name="rating" min="1" max="5" required>
+                        <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="reviewModalLabel">Write a Review</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="submit_review.php" method="post">
+                                            <input type="hidden" name="item_id" value="<?php echo $product_id; ?>">
+                                            <div class="mb-3">
+                                                <label for="rating" class="form-label">Rating (1-5):</label>
+                                                <input type="number" class="form-control" name="rating" min="1" max="5" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="review_text" class="form-label">Your Review:</label>
+                                                <textarea class="form-control" name="review_text" rows="3" required></textarea>
+                                            </div>
+                                            <button type="submit" class="btn btn-success">Submit Review</button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="review_text" class="form-label">Your Review:</label>
-                                <textarea class="form-control" name="review_text" rows="3" required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-success">Submit Review</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+                        </div>
 
                 </div>
                 
@@ -135,38 +141,46 @@ if ($rating_result) {
                 <p><?= nl2br(htmlspecialchars($product['description'])) ?></p>
             </div>
         </div>
-
-        <!-- Reviews Section -->
-        <div class="row mt-5">
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h3 class="card-title">Average Rating</h3>
-                        <p class="display-4"><?= $average_rating ?> <small class="text-muted">/ 5</small></p>
-                    </div>
+        
+<!-- Reviews Section -->
+<div class="row mt-5">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Average Rating</h3>
+                <div class="average-rating">
+                    <span class="stars"><?= str_repeat('★', round($average_rating)) . str_repeat('☆', 5 - round($average_rating)) ?></span>
+                    <p class="display-4"><?= $average_rating ?> <small class="text-muted">/ 5</small></p>
+                    <small class="text-muted">(<?= $review_count ?> reviews)</small>
                 </div>
-            </div>
-            
-            <div class="col-md-8 mt-4">
-                <h3>Customer Reviews</h3>
-                <?php if (empty($reviews)): ?>
-                    <p>No reviews yet. Be the first to review this product!</p>
-                <?php else: ?>
-                    <?php foreach ($reviews as $review): ?>
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <h5 class="card-title"><?= htmlspecialchars($review['username']) ?></h5>
-                                <div class="rating mb-2">
-                                    <?= str_repeat('★', $review['rating']) . str_repeat('☆', 5 - $review['rating']) ?>
-                                </div>
-                                <p class="card-text"><?= htmlspecialchars($review['review_text']) ?></p>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                <?php endif; ?>
             </div>
         </div>
     </div>
+    
+    <div class="col-md-8 mt-4">
+        <h3>Customer Reviews</h3>
+        <?php if (empty($reviews)): ?>
+            <p>No reviews yet. Be the first to review this product!</p>
+        <?php else: ?>
+            <div class="review-list">
+                <?php foreach ($reviews as $review): ?>
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title"><?= htmlspecialchars($review['username']) ?></h5>
+                            <div class="rating mb-2">
+                                <?= str_repeat('★', $review['rating']) . str_repeat('☆', 5 - $review['rating']) ?>
+                            </div>
+                            <p class="card-text"><?= nl2br(htmlspecialchars($review['review_text'])) ?></p>
+                            <small class="text-muted">
+                                Posted on <?= date('F j, Y', strtotime($review['created_at'])) ?>
+                            </small>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
 
     <?php include 'footer.php'; ?> 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
