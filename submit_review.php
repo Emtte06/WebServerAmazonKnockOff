@@ -24,7 +24,7 @@ $query = "INSERT INTO user_reviews (rating, review_text, user_id, item_id)
 
 if (mysqli_query($connection, $query)) {
     // Redirect back to product page
-    header("Location: product.php?id=$item_id");
+    header("Location: productpage.php?id=$item_id");
     exit();
 } else {
     die("Error submitting review: " . mysqli_error($connection));
