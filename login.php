@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $error = 'Invalid email or password';
     }
 }
-include('header.php');
+//include('header.php');
 ?>
 
 <!DOCTYPE html>
