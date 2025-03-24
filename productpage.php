@@ -91,7 +91,7 @@ if ($rating_result) {
                 </form>
 
 
-                        <button type="button" class="btn btn-warning" style="background-color:rgb(255, 123, 0); border-radius: 8px;" data-bs-toggle="modal" data-bs-target="#reviewModal">
+                        <button type="button" class="btn btn-warning" style="background-color:rgb(229, 255, 0); border-radius: 8px;" data-bs-toggle="modal" data-bs-target="#reviewModal">
                         Write a Review
                         </button>
 
