@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 // Initialize the basket if it doesn't exist
 if (!isset($_SESSION['basket'])) {

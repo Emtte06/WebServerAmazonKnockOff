@@ -1,6 +1,5 @@
 <?php
 // Include the database connection and the header
-include('auth.php');
 include('db.php');
 include('header.php');
 // requireAdmin();

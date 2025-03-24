@@ -1,5 +1,5 @@
 <?php
-
+include "auth.php";
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -39,7 +39,7 @@ $result = $conn->query($sql);
         
         <button class="btn btn-success btn-lg mx-2" onclick="toggleBasket()">Basket</button>
 
-        <?php if (isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] == true): ?>
+        <?php if (isAdmin()): ?>
           <a href="adminlanding.php" class="btn btn-success btn-lg mx-2">Admin</a>
         <?php endif;?>
       </div>

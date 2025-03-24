@@ -1,6 +1,4 @@
 <?php
-// Include the header + auth
-include('auth.php');
 include('header.php');
 requireAdmin();
 ?>

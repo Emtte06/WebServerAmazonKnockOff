@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Password is correct, start the session
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
-            $_SESSION['isAdmin'] = $user['isAdmin'];
+            $_SESSION['is_admin'] = $user['isAdmin'];
 
 
             // Redirect to the dashboard or home page

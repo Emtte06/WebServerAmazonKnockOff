@@ -1,5 +1,4 @@
 <?php
-include 'auth.php';
 session_start();
 
 // Om varukorgen är tom, omdirigera till startsidan

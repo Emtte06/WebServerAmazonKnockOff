@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 if (empty($_SESSION['basket'])) {
     header('Location: index.php');
